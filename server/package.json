@@ -2,10 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app"
+    "start": "node dist/app"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,11 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "node": "^23.5.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
   }
 }
