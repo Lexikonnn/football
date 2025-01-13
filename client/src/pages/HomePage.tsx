@@ -22,14 +22,14 @@ const HomePage: React.FC = () => {
         fetchMatches();
     }, []);
 
+    if (error) {
+        return <p className="error">{error}</p>;
+    }
+
     // Filtrování zápasů na základě statusu
     const filteredMatches = matches.filter((match) =>
         filter === '' ? true : match.status === filter
     );
-
-    if (error) {
-        return <p className="error">{error}</p>;
-    }
 
     return (
         <div>
