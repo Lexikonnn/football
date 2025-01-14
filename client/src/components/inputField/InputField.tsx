@@ -1,18 +1,27 @@
-import React, { FC } from 'react';
-import { InputField as InputFieldType } from '../../types/inputField';
+import React from 'react';
 
 type InputFieldProps = {
-    inputField: InputFieldType;
-    onChange?: (value: string) => void;
+    inputField: { label: string; placeholder: string };
+    value: string;
+    onChange: (value: string) => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void; // Optional keydown handler
 };
 
-const InputField: FC<InputFieldProps> = ({ inputField, onChange=() => {} }) => {
+const InputField: React.FC<InputFieldProps> = ({ inputField, value, onChange, onKeyDown  }) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(event.target.value);
+    };
+
     return (
-        <div className='flex flex-col'>
-            <label className='text-base font-medium'>{inputField.label}</label>
-            <input className='px-4 py-2 border-2 border-slate-50'
+        <div>
+            <label>{inputField.label}</label>
+            <input
+                type="text"
                 placeholder={inputField.placeholder}
-                onChange={(e) => onChange(e.target.value)}
+                value={value} // Controlled input
+                onChange={handleChange}
+                onKeyDown={onKeyDown} // Capture keydown events
+                className="border rounded px-2 py-1"
             />
         </div>
     );

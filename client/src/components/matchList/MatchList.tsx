@@ -4,10 +4,11 @@ import { getMatches } from '../../services/matchServices';
 import MatchCard from '../matchCard/MatchCard';
 
 interface MatchListProps {
-    filter: string;
+    filter: string; // Status filter
+    teamTags: string[]; // Array of team tags
 }
 
-const MatchList: React.FC<MatchListProps> = ({ filter }) => {
+const MatchList: React.FC<MatchListProps> = ({ filter, teamTags }) => {
     const [error, setError] = useState<string | null>(null);
     const [matches, setMatches] = useState<Match[]>([]);
 
@@ -28,10 +29,16 @@ const MatchList: React.FC<MatchListProps> = ({ filter }) => {
         return <p className="error">{error}</p>;
     }
 
-    // Filter matches based on the filter prop
-    const filteredMatches = matches.filter((match) =>
-        filter === '' ? true : match.status === filter
-    );
+    // Filter matches based on filter and teamTags
+    const filteredMatches = matches.filter((match) => {
+        const statusMatch = filter === '' || match.status === filter;
+        const teamMatch =
+            teamTags.length === 0 ||
+            teamTags.some((tag) =>
+                tag.toLowerCase() === match.teamA.toLowerCase() || tag.toLowerCase() === match.teamB.toLowerCase()
+            ); // Case-insensitive comparison
+        return statusMatch && teamMatch;
+    });
 
     return (
         <div className="flex flex-col gap-4">
