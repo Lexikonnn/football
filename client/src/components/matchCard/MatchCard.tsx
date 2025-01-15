@@ -16,7 +16,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
                 <p className="text-xs sm:text-base">{formatDate(match.date)}</p>
             </div>
             <div className="self-center sm:self-end">
-                <Btn button={{ content: "favourite" }} />
+                <Btn button={{ content: "Add to Watchlist" }} />
             </div>
         </div>
     );
