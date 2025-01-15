@@ -1,4 +1,5 @@
 import { Match } from '../../types/match.types';
+import { formatDate } from '../../utils/formateDate';
 import Btn from '../button/Btn';
 
 type MatchCardProps = {
@@ -12,7 +13,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
             <div className="flex flex-col gap-2 text-center sm:text-left flex-grow">
                 <h1 className="text-lg sm:text-2xl font-bold">{match.teamA} vs {match.teamB}</h1>
                 <h2 className="text-sm sm:text-xl">{match.status}</h2>
-                <p className="text-xs sm:text-base">{new Date(match.date).toLocaleDateString()}</p>
+                <p className="text-xs sm:text-base">{formatDate(match.date)}</p>
             </div>
             <div className="self-center sm:self-end">
                 <Btn button={{ content: "favourite" }} />
