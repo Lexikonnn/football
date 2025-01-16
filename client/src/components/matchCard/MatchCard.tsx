@@ -15,9 +15,6 @@ const MatchCard: React.FC<MatchCardProps> = ({ match }) => {
                 <h2 className="text-sm sm:text-xl">{match.status}</h2>
                 <p className="text-xs sm:text-base">{formatDate(match.date)}</p>
             </div>
-            <div className="self-center sm:self-end">
-                <Btn button={{ content: "Add to Watchlist" }} />
-            </div>
         </div>
     );
 };

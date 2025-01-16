@@ -18,9 +18,9 @@ const InputField: React.FC<InputFieldProps> = ({ inputField, value, onChange, on
             <input
                 type="text"
                 placeholder={inputField.placeholder}
-                value={value} // Controlled input
+                value={value}
                 onChange={handleChange}
-                onKeyDown={onKeyDown} // Capture keydown events
+                onKeyDown={onKeyDown}
                 className="border rounded px-2 py-1"
             />
         </div>
